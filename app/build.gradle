@@ -47,9 +47,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    api 'androidx.multidex:multidex:2.0.1'
+
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
     implementation 'com.google.code.gson:gson:2.8.6'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
     implementation 'com.squareup.okhttp3:okhttp:4.8.0'
 
@@ -58,5 +61,9 @@ dependencies {
     implementation(
             [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.1.1']
     )
+
+    debugImplementation 'com.facebook.flipper:flipper:0.84.0'
+    debugImplementation 'com.facebook.soloader:soloader:0.10.1'
+    debugImplementation 'com.facebook.flipper:flipper-leakcanary2-plugin:0.84.0'
 
 }
