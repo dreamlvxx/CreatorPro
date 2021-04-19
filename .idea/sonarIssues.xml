@@ -83,6 +83,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/dream/create/business/ui/view/MyObserable.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/dream/create/business/ui/view/SplashActivity.java">
           <value>
             <set />
@@ -169,6 +174,21 @@
           </value>
         </entry>
         <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/src/main/java/com/kingsoft/mail/providers/UIProvider.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/Graph/src/main/java/com/kingsoft/mail/graph/auth/MSAuthenticationHelper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/Graph/src/main/java/com/kingsoft/mail/graph/auth/SignInObservable.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/Graph/src/main/java/com/kingsoft/mail/graph/graph/api/LoginApi.java">
           <value>
             <set />
           </value>
