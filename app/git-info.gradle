@@ -1,0 +1,18 @@
+static def getAlphaInfo() {
+    def commitId = getGitCommitId()
+    if (commitId == null || commitId == "") {
+        return getBuildTime()
+    } else {
+        return commitId
+    }
+}
+
+static def getGitCommitId() {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+static def getBuildTime() {
+    return new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("GMT+08:00"))
+}
+
+ext.commitId = getAlphaInfo()

@@ -1,0 +1,3 @@
+ext{
+    gsonVerson = '2.8.6'
+}
