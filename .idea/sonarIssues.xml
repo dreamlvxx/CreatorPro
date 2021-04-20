@@ -128,7 +128,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/dream/create/widget/CustomLoadMoreView.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/svg_add_home.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_add_comment_layout.xml">
           <value>
             <set />
           </value>
@@ -169,6 +179,36 @@
           </value>
         </entry>
         <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/res/xml/oauth_outlook.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/src/debug/java/com/kingsoft/mail/Libraries.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/src/main/java/com/kingsoft/email/EmailApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/src/main/java/com/kingsoft/email/MailInitTask.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/src/main/java/com/kingsoft/email/activity/setup/AccountAddActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/workspace/Emial_Oppo/email/AndroidMail/src/main/java/com/kingsoft/email/statistics/URLMap.java">
           <value>
             <set />
           </value>

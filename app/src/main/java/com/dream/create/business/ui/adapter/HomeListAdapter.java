@@ -1,7 +1,7 @@
 package com.dream.create.business.ui.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.dream.create.R;
 import com.dream.create.business.ui.entity.HomeListItemEntity;
 

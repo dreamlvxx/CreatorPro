@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".business.ui.view.AddCommentActivity"></activity>
+        <activity android:name=".business.ui.view.AddCommentActivity"
+            android:windowSoftInputMode="adjustResize"
+            ></activity>
     </application>
 
 </manifest>
