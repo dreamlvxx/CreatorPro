@@ -108,7 +108,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initData(){
-        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        HomeViewModel homeViewModel = getActivityViewModel(HomeViewModel.class);
         homeViewModel.getListData().observe(this, new Observer<HomeListEntity>() {
             @Override
             public void onChanged(HomeListEntity homeListEntity) {
