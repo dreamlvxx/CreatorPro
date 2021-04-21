@@ -10,14 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatorPro">
-        <activity android:name=".MainActivity">
 
-        </activity>
-
-        <activity android:name=".business.ui.view.HomeActivity"
+        <activity android:name=".business.ui.view.activity.home.HomeActivity"
             android:windowSoftInputMode="adjustResize"
             ></activity>
-        <activity android:name=".business.ui.view.SplashActivity">
+        <activity android:name=".business.ui.view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".business.ui.view.AddCommentActivity"
+        <activity android:name=".business.ui.view.activity.home.AddCommentActivity"
             android:windowSoftInputMode="adjustResize"
             ></activity>
     </application>

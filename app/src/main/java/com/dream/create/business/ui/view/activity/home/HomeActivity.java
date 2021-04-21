@@ -1,37 +1,35 @@
-package com.dream.create.business.ui.view;
+package com.dream.create.business.ui.view.activity.home;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dream.create.R;
 import com.dream.create.business.ui.adapter.HomeListAdapter;
-import com.dream.create.business.ui.entity.HomeListItemEntity;
+import com.dream.create.business.ui.entity.HomeListEntity;
+import com.dream.create.business.viewmodel.HomeViewModel;
 import com.dream.create.databinding.ActivityHomeBinding;
 import com.dream.create.framework.BaseActivity;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
 public class HomeActivity extends BaseActivity {
+    public static final String COMMENT = "comment";
     private ActivityHomeBinding mActivityHomeBinding;
-    private RecyclerView mRecyclerviewHome;
     private HomeListAdapter mHomeListAdapter;
-    private List<HomeListItemEntity> mList = new ArrayList<>();
+    private HomeListEntity mHomeListEntity = new HomeListEntity();
     private ActivityResultLauncher mLauncher;
     private String TAG = "HomeActivity";
 
@@ -47,28 +45,18 @@ public class HomeActivity extends BaseActivity {
 
     private void initView(){
         initToolbar();
-        mHomeListAdapter = new HomeListAdapter(R.layout.item_home_main_list_layout,mList);
         initAdapter();
-        mActivityHomeBinding.recyclerviewHome.setAdapter(mHomeListAdapter);
-        mActivityHomeBinding.recyclerviewHome.setLayoutManager(new LinearLayoutManager(this));
-        mActivityHomeBinding.fabEditHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goAddComment();
-            }
-        });
     }
 
     public void initAdapter() {
+        mHomeListAdapter = new HomeListAdapter(R.layout.item_home_main_list_layout, mHomeListEntity.getData());
         mActivityHomeBinding.srlHome.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 mActivityHomeBinding.recyclerviewHome.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        HomeListItemEntity e = new HomeListItemEntity();
-                        e.setSingleText("sad");
-                        mList.add(e);
+                        mHomeListEntity.addItem(new HomeListEntity.Item("load +"));
                         mHomeListAdapter.notifyDataSetChanged();
                         mActivityHomeBinding.srlHome.finishLoadmore();
                     }
@@ -80,13 +68,20 @@ public class HomeActivity extends BaseActivity {
                 mActivityHomeBinding.recyclerviewHome.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        HomeListItemEntity e = new HomeListItemEntity();
-                        e.setSingleText("sad");
-                        mList.add(e);
+                        mHomeListEntity.addItem(new HomeListEntity.Item("refresh +"));
                         mHomeListAdapter.notifyDataSetChanged();
                         mActivityHomeBinding.srlHome.finishRefresh();
                     }
                 },2000);
+            }
+        });
+
+        mActivityHomeBinding.recyclerviewHome.setAdapter(mHomeListAdapter);
+        mActivityHomeBinding.recyclerviewHome.setLayoutManager(new LinearLayoutManager(this));
+        mActivityHomeBinding.fabEditHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goAddComment();
             }
         });
     }
@@ -113,28 +108,28 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initData(){
-        for (int i = 0; i < 30; i++) {
-            HomeListItemEntity entity = new HomeListItemEntity();
-            entity.setSingleText("item " + i);
-            mList.add(entity);
-        }
-        mHomeListAdapter.notifyDataSetChanged();
+        HomeViewModel homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel.getListData().observe(this, new Observer<HomeListEntity>() {
+            @Override
+            public void onChanged(HomeListEntity homeListEntity) {
+                mHomeListEntity.addAllItem(homeListEntity.getData());
+                mHomeListAdapter.notifyItemInserted(mHomeListEntity.getData().size() - 1);
+            }
+        });
     }
 
     public void initLauncher(){
         mLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             Optional.ofNullable(result.getData()).ifPresent(intent -> {
-                String comment = intent.getStringExtra("comment");
-                HomeListItemEntity entity = new HomeListItemEntity();
-                entity.setSingleText(comment);
-                mList.add(entity);
-                mHomeListAdapter.notifyItemInserted(mList.size() - 1);
+                String comment = intent.getStringExtra(COMMENT);
+                mHomeListEntity.addItem(new HomeListEntity.Item(comment));
+                mHomeListAdapter.notifyItemInserted(mHomeListEntity.getData().size() - 1);
             });
         });
     }
 
     public void goAddComment(){
-        Intent t = new Intent(HomeActivity.this,AddCommentActivity.class);
+        Intent t = new Intent(HomeActivity.this, AddCommentActivity.class);
         Optional.ofNullable(t).ifPresent(new Consumer<Intent>() {
             @Override
             public void accept(Intent intent) {

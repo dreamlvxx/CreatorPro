@@ -1,4 +1,4 @@
-package com.dream.create.business.ui.view;
+package com.dream.create.business.ui.view.activity.home;
 
 import android.content.Intent;
 import android.os.Bundle;
