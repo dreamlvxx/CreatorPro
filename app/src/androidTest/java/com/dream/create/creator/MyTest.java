@@ -13,6 +13,7 @@ public class MyTest extends BaseTest {
     @Before
     public void doPree(){
         System.out.println("do preee");
+        System.out.println("this is diff");
     }
 
     @Test
