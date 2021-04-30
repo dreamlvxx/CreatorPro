@@ -1,7 +1,13 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'jacoco'//添加插件jacoco
 apply from: 'git-info.gradle'
+
+jacoco {
+    toolVersion = "0.8.6"//声明jacoco的版本号
+}
+
 android {
     compileSdkVersion rootProject.compileSdkVersionX
     buildToolsVersion "30.0.2"
@@ -18,11 +24,13 @@ android {
 
     buildTypes {
         debug{
+            testCoverageEnabled = true//设置为true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             versionNameSuffix "_d_$project.ext.commitId"
         }
         release {
+            testCoverageEnabled = true//设置为true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             versionNameSuffix "_r_$project.ext.commitId"
@@ -71,4 +79,41 @@ dependencies {
     implementation 'androidx.activity:activity:1.2.2'
     implementation 'androidx.fragment:fragment:1.3.2'
 
+    implementation 'org.jacoco:org.jacoco.core:0.8.6'//导入jacoco的版本包
+
 }
+
+def coverageSourceDirs = ['src/main/java']
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "Reporting"
+
+    description = "Generate Jacoco coverage reports"
+
+    classDirectories.from = fileTree(dir: '../app/build/intermediates/app_classes/debug',
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/*$ViewInjector*.*',
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*'])
+
+
+    additionalSourceDirs.from = files(coverageSourceDirs)
+    sourceDirectories.from = files(coverageSourceDirs)
+    executionData.from = files('../app/build/jacoco/testDebugUnitTest.exec')
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+//    afterEvaluate {
+//        jacocoTestReport {
+//            classDirectories.from = files(classDirectories.files.collect {
+//                fileTree(dir:'../app',
+//                        exclude: [
+//                                '**/*$*.*',
+//                        ])
+//            })
+//        }
+//    }
+}
+
