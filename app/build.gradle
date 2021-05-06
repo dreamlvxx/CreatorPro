@@ -84,8 +84,8 @@ dependencies {
 }
 
 def coverageSourceDirs = ['src/main/java']
-task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
-    group = "Reporting"
+task jacocoTestDiffReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "XXReporting"
 
     description = "Generate Jacoco coverage reports"
 
@@ -115,5 +115,13 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
 //            })
 //        }
 //    }
+}
+
+jacocoTestDiffReport.doFirst {
+    println 'start generate report'
+}
+
+jacocoTestDiffReport.doLast {
+    println 'end report'
 }
 
