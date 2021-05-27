@@ -1,0 +1,25 @@
+task TestTask1{
+    group = "customTask"
+    println("this is task 1")
+}
+
+task TestTask2 (dependsOn: TestTask1){
+    println("this is task 2 dependsOn $TestTask1.name ")
+}
+
+task loadfile {
+    def files = file('./mydir').listFiles().sort()
+    files.each { File file ->
+        if (file.isFile()) {
+            ant.loadfile(srcFile: file, property: file.name)
+            println " *** $file.name ***"
+        }
+    }
+}
+
+task TestTask3 {
+    println("default task")
+}
+
+defaultTasks 'TestTask3'
+

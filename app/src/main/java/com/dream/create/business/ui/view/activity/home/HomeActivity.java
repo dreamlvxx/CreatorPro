@@ -53,25 +53,19 @@ public class HomeActivity extends BaseActivity {
         mActivityHomeBinding.srlHome.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                mActivityHomeBinding.recyclerviewHome.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mHomeListEntity.addItem(new HomeListEntity.Item("load +"));
-                        mHomeListAdapter.notifyDataSetChanged();
-                        mActivityHomeBinding.srlHome.finishLoadmore();
-                    }
+                mActivityHomeBinding.recyclerviewHome.postDelayed(() -> {
+                    mHomeListEntity.addItem(new HomeListEntity.Item("load +"));
+                    mHomeListAdapter.notifyDataSetChanged();
+                    mActivityHomeBinding.srlHome.finishLoadmore();
                 },2000);
             }
 
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                mActivityHomeBinding.recyclerviewHome.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mHomeListEntity.addItem(new HomeListEntity.Item("refresh +"));
-                        mHomeListAdapter.notifyDataSetChanged();
-                        mActivityHomeBinding.srlHome.finishRefresh();
-                    }
+                mActivityHomeBinding.recyclerviewHome.postDelayed(() -> {
+                    mHomeListEntity.addItem(new HomeListEntity.Item("refresh +"));
+                    mHomeListAdapter.notifyDataSetChanged();
+                    mActivityHomeBinding.srlHome.finishRefresh();
                 },2000);
             }
         });
@@ -109,12 +103,9 @@ public class HomeActivity extends BaseActivity {
 
     private void initData(){
         HomeViewModel homeViewModel = getActivityViewModel(HomeViewModel.class);
-        homeViewModel.getListData().observe(this, new Observer<HomeListEntity>() {
-            @Override
-            public void onChanged(HomeListEntity homeListEntity) {
-                mHomeListEntity.addAllItem(homeListEntity.getData());
-                mHomeListAdapter.notifyItemInserted(mHomeListEntity.getData().size() - 1);
-            }
+        homeViewModel.getListData().observe(this, homeListEntity -> {
+            mHomeListEntity.addAllItem(homeListEntity.getData());
+            mHomeListAdapter.notifyItemInserted(mHomeListEntity.getData().size() - 1);
         });
     }
 
@@ -130,12 +121,7 @@ public class HomeActivity extends BaseActivity {
 
     public void goAddComment(){
         Intent t = new Intent(HomeActivity.this, AddCommentActivity.class);
-        Optional.ofNullable(t).ifPresent(new Consumer<Intent>() {
-            @Override
-            public void accept(Intent intent) {
-                mLauncher.launch(intent);
-            }
-        });
+        Optional.ofNullable(t).ifPresent(intent -> mLauncher.launch(intent));
     }
 
     @Override

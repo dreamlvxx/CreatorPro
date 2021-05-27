@@ -3,6 +3,7 @@ plugins {
 }
 apply plugin: 'jacoco'//添加插件jacoco
 apply from: 'git-info.gradle'
+apply from: 'git-pro.gradle'
 
 jacoco {
     toolVersion = "0.8.6"//声明jacoco的版本号
@@ -41,8 +42,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -84,6 +85,7 @@ dependencies {
 }
 
 def coverageSourceDirs = ['src/main/java']
+//JacocoReport的复制任务
 task jacocoTestDiffReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
     group = "XXReporting"
 

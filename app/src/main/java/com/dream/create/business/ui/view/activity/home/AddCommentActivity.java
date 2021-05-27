@@ -37,4 +37,10 @@ public class AddCommentActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+    }
+
 }
