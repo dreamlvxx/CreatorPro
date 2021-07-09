@@ -82,6 +82,21 @@ dependencies {
 
     implementation 'org.jacoco:org.jacoco.core:0.8.6'//导入jacoco的版本包
 
+    def androix_core_version = '1.6.0-alpha02'
+    def lifecycle_version = "2.3.1"
+    //ktx https://developer.android.google.cn/kotlin/ktx/extensions-list
+    api "androidx.core:core:$androix_core_version"
+    api "androidx.core:core-ktx:$androix_core_version"
+
+    api "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-livedata-core-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
 }
 
 def coverageSourceDirs = ['src/main/java']
