@@ -10,21 +10,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CreatorPro">
-
-        <activity android:name=".business.ui.view.activity.home.HomeActivity"
-            android:windowSoftInputMode="adjustResize"
-            ></activity>
+        <activity android:name=".business.ui.view.activity.MainActivity"/>
+        <activity
+            android:name=".business.ui.view.activity.home.HomeActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".business.ui.view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.MONKEY"/>
+                <category android:name="android.intent.category.MONKEY" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".business.ui.view.activity.home.AddCommentActivity"
-            android:windowSoftInputMode="adjustResize"
-            ></activity>
+        <activity
+            android:name=".business.ui.view.activity.home.AddCommentActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
